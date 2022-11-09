@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as zod from 'zod';
 import { CountdownContainer, FormContainer, HomeContainer, MinutesAmount, Separator, StartCountdownButton, TaskInput } from "./styles";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const newCycleFormValidationSchema = zod.object({
   task: zod.string().min(1, 'Informe a tarefa'),
@@ -54,6 +54,13 @@ export function Home() {
 
   const minutes = String(minutesAmount).padStart(2, '0')
   const seconds = String(secondsAmount).padStart(2, '0')
+
+  useEffect(() => {
+    if (activeCycle) {
+      document.title= `${minutes}:${seconds}`
+    }
+    
+  }, [minutes, seconds, activeCycle])
 
 
   const task = watch('task')
