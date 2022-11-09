@@ -49,7 +49,7 @@ export function Home() {
   const totalSeconds = activeCycle ? activeCycle.minutesAmount * 60 : 0
   const currentSeconds = activeCycle ? totalSeconds - amountSecondsPassed : 0
 
-  const minutesAmount = Math.round(currentSeconds / 60)
+  const minutesAmount = Math.floor(currentSeconds / 60)
   const secondsAmount = currentSeconds % 60
 
   const minutes = String(minutesAmount).padStart(2, '0')
